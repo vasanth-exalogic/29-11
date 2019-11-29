@@ -1,8 +1,4 @@
 class SessionsController < ApplicationController
-  before_action :is_admin?, only: [:index]
-
-  def index
-  end
 
   def new
   end
@@ -13,8 +9,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(userparams[:password])
       session[:type]=user.role
       if user.role=='admin'
-        render 'index'
+        redirect_to '/users'
       else
+        session[:id]=user.id
         redirect_to user
       end
     else
