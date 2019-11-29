@@ -31,7 +31,6 @@
       }
 
 
-
     </style>
     <script>
       var page = window.location.pathname.split('/')
@@ -62,7 +61,7 @@
               <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
               </li>
-              
+
               <li class="nav-item">
                 <a class="nav-link" href="/users/new">Registration</a>
               </li>
@@ -89,26 +88,86 @@
     </header>
     <br>
     <div class="container">
-            <div class="cont">
-              <div class="font-bebas">
-                <i class="fas fa-user-circle fa-3x"></i><br>
-                USERS COUNT<br>
-                <%= User.count-1%>
-              </div>
-            </div>
-              <div class="cvd">
-                  USERS LIST
-              </div>
+      <br><br>
 
-              <% @users.each do |user|%>
-                <% if user.role!='admin'%>
-                  <a href="<%= "/users/" << (user.id).to_s%>">
-                    <div class="cont1">
-                      <div class="cvc"><%= user.fname%></div><div class="cv"><%= user.email%></div>
+
+                <% i=0%>
+                <table>
+                  <tr>
+                    <td colspan="3" align="center">
+                      <div class="cont">
+                      <div class="font-bebas">
+                        <i class="fas fa-user-circle fa-3x"></i><br>
+                        USERS COUNT<br>
+                        <%= User.count-1%>
+                      </div>
                     </div>
-                  </a>
-                <% end%>
-              <% end%>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" style="text-align:center;"><div class="font-beba">USERS</div></td>
+                  </tr>
+                  <% @users.each do |user|%>
+                    <% if user.role!='admin'%>
+                      <% if i%3==0%>
+                        <tr>
+                          <td>
+                            <a href="<%= "/users/" << user.id.to_s%>">
+                              <div class="card">
+                                <% if user.gender=='Male'%>
+                                  <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" style="width:100%">
+                                <%else%>
+                                  <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" style="width:100%">
+                                <% end%>
+                                <div class="container-card">
+                                  <h4><b><%= user.fname%></b></h4>
+                                  <p><%= user.email%></p>
+                                </div>
+                              </div>
+                            </a>
+
+                          </td>
+                      <% elsif i%3==1%>
+                          <td>
+                            <a href="<%= "/users/" << user.id.to_s%>">
+                              <div class="card">
+                                <% if user.gender=='Male'%>
+                                  <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" style="width:100%">
+                                <%else%>
+                                  <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" style="width:100%">
+                                <% end%>
+                                <div class="container-card">
+                                  <h4><b><%= user.fname%></b></h4>
+                                  <p><%= user.email%></p>
+                                </div>
+                              </div>
+                            </a>
+
+                          </td>
+                      <% else%>
+                          <td>
+                            <a href="<%= "/users/" << user.id.to_s%>">
+                              <div class="card">
+                                <% if user.gender=='Male'%>
+                                  <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" style="width:100%">
+                                <%else%>
+                                  <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" style="width:100%">
+                                <% end%>
+                                <div class="container-card">
+                                  <h4><b><%= user.fname%></b></h4>
+                                  <p><%= user.email%></p>
+                                </div>
+                              </div>
+                            </a>
+
+                          </td>
+                        </tr>
+                      <% end%>
+                      <% i+=1%>
+                    <% end%>
+                  <% end%>
+                </table>
+
               <% @users.each do |user|%>
                   <pre>
 
